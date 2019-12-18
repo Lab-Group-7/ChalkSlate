@@ -107,6 +107,15 @@ footer {
 
   <article>
     <p style="color:White">Welcome to ChalkSlate</p>
+    <label>Log-in as</label>
+    <select name="join_as">
+
+  <option value="admin">Admin</option>
+  <option value="tutor">Tutor</option>
+  <option value="student">Student</option>
+
+</select>
+    <br> <br>
       <form action="" method="post">
     {% csrf_token %}
     {{ form }}
