@@ -15,4 +15,12 @@
 <a href="/guide"><h2>GUIDE</h2></a>
 <a href="/about-us"><h2>ABOUT US</h2></a>
 </body>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Login">
+</form>
+
+
 </html>

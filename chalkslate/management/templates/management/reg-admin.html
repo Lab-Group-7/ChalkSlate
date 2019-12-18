@@ -7,4 +7,11 @@
 <body>
 <p>Welcome</p>
 </body>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Register">
+</form>
+
 </html>
