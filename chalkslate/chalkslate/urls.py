@@ -18,7 +18,9 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('chalkslate/', include('management.urls')),#firstPage
+    path('chalkslate/', include('management.urls')),
+
+    #firstPage
 
     #menu
     # path('home/', views.home),
