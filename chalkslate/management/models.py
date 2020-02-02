@@ -67,4 +67,3 @@ class InsStudent(models.Model):
 class InsTutor(models.Model):
     institute = models.ForeignKey(Admin, on_delete=models.CASCADE)
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
-
