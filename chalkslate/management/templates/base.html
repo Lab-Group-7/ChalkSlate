@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'management/enter-style2.css' %}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> ChalkSlate </title>
+</head>
+
+<body>
+
+  <header>
+    <h1>
+
+        <a href="/chalkslate/home"><img style="width: 120px; height: 80px;" alt="logo" src="{% static 'management/images/logo.gif' %}"/> </a>
+
+        ____________________ChalkSlate.com______________________
+
+        <a href="https://www.facebook.com/kowshiqueroy" target="blank"><img style="width: 60px; height: 60px;" alt="fb" src="{% static 'management/images/fb.png' %}"/> </a>
+
+    </h1>
+
+
+  </header>
+
+  <section>
+      <div class="btn-group-lg btn-group-vertical text-center p-3 mb-2 bg-dark text-white" role="group" aria-label="Basic example">
+          <a class="btn btn-outline-primary" href="{% url 'home_page' %}" role="button">HOME</a>
+          <a class="btn btn-outline-primary" href="{% url 'notice_board' %}" role="button">NOTICE</a>
+          <a class="btn btn-outline-primary" href="{% url 'sign_in' %}" role="button">SIGN IN</a>
+          <a class="btn btn-outline-primary" href="{% url 'contact_us' %}" role="button">CONTACT US</a>
+          <a class="btn btn-outline-primary" href="{% url 'register' %}" role="button">REGISTER</a>
+          <a class="btn btn-outline-primary" href="{% url 'guide' %}" role="button">GUIDE</a>
+          <a class="btn btn-outline-primary" href="{% url 'about_us' %}" role="button">ABOUT US</a>
+
+      </div>
+
+
+    <article>
+
+      <h3 class="text-info"> Welcome To ChalkSlate. </h3>
+      {% block override_0 %}
+
+      {% endblock %}
+    </article>
+  </section>
+
+  <footer>
+    <p>All rights reserved by ChalkSlate.com Team</p>
+  </footer>
+
+</body>
+</html>
