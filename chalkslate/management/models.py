@@ -17,7 +17,7 @@ class ChalkSlateUser(AbstractUser):
 
     )
 
-    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, null=True, blank=True)
 
     # is_admin = models.BooleanField(default=False)
     # is_student = models.BooleanField(default=False)
