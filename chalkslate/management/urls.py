@@ -38,4 +38,6 @@ urlpatterns = [
     path('home-student-feedback/', views.home_student_feedback, name='home_student_feedback'),
     path('home-student-result/', views.home_student_result, name='home_student_result'),
     path('home-student-other/', views.home_student_other, name='home_student_other'),
+    path('logout/', views.logout_view, name='logout'),
+    path('login/', views.login_view, name='login'),
 ]

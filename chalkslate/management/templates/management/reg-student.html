@@ -1,9 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'register-user.html' %}
 
-{% block override_0 %}
-  <form action="" method="post">
-      {% csrf_token %}
-      {{ form }}
-      <input type="submit" value="Register">
-  </form>
+{% block override_form %}
+
+    {% for field in student_registration_form %}
+
+        <p>
+
+            {{ field.label_tag }}
+            {{ field }}
+
+            {% if field.help_text %}
+
+                <small style="color: black;"> {{ field.help_text }} </small>
+
+            {% endif %}
+
+            {% for error in field.errors %}
+
+                <p style="color: red;"> {{ error }} </p>
+
+            {% endfor %}
+
+        </p>
+
+    {% endfor %}
+
 {% endblock %}
