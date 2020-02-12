@@ -135,3 +135,4 @@ class InsStudent(models.Model):
 class InsTutor(models.Model):
     institute = models.ForeignKey(ChalkSlateAdmin, on_delete=models.CASCADE)
     tutor = models.OneToOneField(Tutor, on_delete=models.CASCADE)
+
