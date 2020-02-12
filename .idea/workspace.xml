@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16f46a05-0e73-475b-b893-ab7f0f4cf0ed" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/chalkslate/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/chalkslate/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/management/static/management/enter-style2.css" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/static/management/enter-style2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chalkslate/management/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/management/templates/management/contact-us.html" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/templates/management/contact-us.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/management/templates/management/notice-board.html" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/templates/management/notice-board.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/management/templates/management/reg-tutor.html" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/templates/management/reg-tutor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/management/templates/register-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/templates/register-user.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="31" column="41" lean-forward="true" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+            <state relative-caret-position="261">
+              <caret line="74" selection-start-line="74" selection-end-line="74" />
             </state>
           </provider>
         </entry>
@@ -30,45 +38,58 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/home-admin-other.html">
+        <entry file="file://$PROJECT_DIR$/chalkslate/chalkslate/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="94" column="7" lean-forward="true" selection-start-line="94" selection-start-column="7" selection-end-line="94" selection-end-column="7" />
+            <state relative-caret-position="204">
+              <caret line="21" column="15" lean-forward="true" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+              <folding>
+                <element signature="e#634#666#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/main.html">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/reg-tutor.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/home-admin-class.html">
+        <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/register-user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1711" />
+            <state relative-caret-position="360">
+              <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/notice-board.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="99" selection-start-line="9" selection-start-column="99" selection-end-line="9" selection-end-column="99" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/contact-us.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="99" selection-start-line="5" selection-start-column="99" selection-end-line="5" selection-end-column="99" />
+            </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/chalkslate/management/static/management/enter-style2.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/guide.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/home-admin.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1258">
-              <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+            <state relative-caret-position="577">
+              <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
             </state>
           </provider>
         </entry>
@@ -110,7 +131,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/chalkslate/management/templates/management/home.html" />
+        <option value="$PROJECT_DIR$/chalkslate/chalkslate/urls.py" />
+        <option value="$PROJECT_DIR$/chalkslate/management/static/management/enter-style2.css" />
         <option value="$PROJECT_DIR$/chalkslate/management/templates/base.html" />
+        <option value="$PROJECT_DIR$/chalkslate/management/templates/management/reg-tutor.html" />
+        <option value="$PROJECT_DIR$/chalkslate/management/templates/register-user.html" />
+        <option value="$PROJECT_DIR$/chalkslate/management/templates/management/contact-us.html" />
+        <option value="$PROJECT_DIR$/chalkslate/management/templates/management/notice-board.html" />
       </list>
     </option>
   </component>
@@ -127,7 +154,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Course" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -198,6 +224,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -307,12 +334,26 @@
     <entry file="file://$PROJECT_DIR$/chalkslate/management/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/chalkslate/management/forms.py">
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/home-admin-other.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1598">
+          <caret line="94" column="7" selection-start-line="94" selection-start-column="7" selection-end-line="94" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/main.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/home-admin-class.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/guide.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/home-admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -323,45 +364,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/main.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/home-admin-class.html">
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1711" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chalkslate/management/static/management/enter-style2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/guide.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/home-admin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1258">
-          <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        <state>
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/reg-admin.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/home-admin-other.html">
+    <entry file="file://$PROJECT_DIR$/chalkslate/chalkslate/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="94" column="7" lean-forward="true" selection-start-line="94" selection-start-column="7" selection-end-line="94" selection-end-column="7" />
+        <state relative-caret-position="204">
+          <caret line="21" column="15" lean-forward="true" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+          <folding>
+            <element signature="e#634#666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/static/management/enter-style2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="31" column="41" lean-forward="true" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+        <state relative-caret-position="261">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/reg-tutor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/register-user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/contact-us.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="99" selection-start-line="5" selection-start-column="99" selection-end-line="5" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/management/notice-board.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="99" selection-start-line="9" selection-start-column="99" selection-end-line="9" selection-end-column="99" />
         </state>
       </provider>
     </entry>
