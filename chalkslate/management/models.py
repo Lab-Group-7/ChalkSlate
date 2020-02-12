@@ -141,5 +141,6 @@ class notice(models.Model):
     mail=models.CharField(max_length=50,null=False)
     date=models.DateTimeField(null=False)
     content=models.CharField(max_length=200,null=False)
+    per=models.CharField(max_length=50,default='no')
     def __str__(self):
         return self.name

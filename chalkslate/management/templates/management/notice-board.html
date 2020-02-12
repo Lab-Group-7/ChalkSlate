@@ -2,6 +2,9 @@
 
 
 {% block override_0 %}
+<br>
+<p>Submit your notice/advertise</p>
+<br>
 
 <form method="POST">
     {% csrf_token %}
@@ -15,21 +18,22 @@
 
 
 </form>
-
+<br><br>
 
 <h1> All Notices Here. </h1>
 <br>
 {% for i in all %}
-
+{% if i.per == 'yes' %}
 {{i.name}} {{i.date}} <br>
 {{i.content}}<br><br>
+{% endif %}
 
 {% endfor %}
 
 
 <br>
 <br>
-<h2>Send us your Advertise here: </h2>
+<h2>Or Send us your Advertise here: </h2>
 <h1>Contact: <a href="mailto:kowshiqueroy@gmail.com" target="blank">kowshiqueroy@gmail.com</a></h1>
 
 {% endblock %}

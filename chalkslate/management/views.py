@@ -47,10 +47,12 @@ def notice_board(request):
             related_to = chalkslate_user.tutor
             context['related_to'] = related_to
     if request.method=='POST':
+
         notice.objects.create(name=request.POST.get('name'),mail=request.POST.get('mail'),date=request.POST.get('date'),content=request.POST.get('content'))
-    all=notice.objects.all()
-    con={'all':all}
-    return render(request,'management/notice-board.html', context,all)
+
+    all = notice.objects.all()
+    context = {'all': all}
+    return render(request,'management/notice-board.html', context)
 
 def guide(request):
     context = {}
