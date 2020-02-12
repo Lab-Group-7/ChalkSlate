@@ -3,7 +3,30 @@
 
 {% block override_0 %}
 
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="text" name="name" placeholder="Name"/>
+       <input type="text" name="mail" placeholder="Mail"/>
+       <input type="datetime-local" name="date" placeholder="Date Time"/>
+       <input type="text" name="content" placeholder="Content"/><br><br>
+       <input type="submit" value="SEND"/>
+
+
+
+</form>
+
+
 <h1> All Notices Here. </h1>
+<br>
+{% for i in all %}
+
+{{i.name}} {{i.date}} <br>
+{{i.content}}<br><br>
+
+{% endfor %}
+
+
 <br>
 <br>
 <h2>Send us your Advertise here: </h2>
