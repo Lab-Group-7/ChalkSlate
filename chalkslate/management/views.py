@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import login, authenticate, logout
-from .models import ChalkSlateUser,notice
+from .models import ChalkSlateUser,notice,ChalkSlateAdmin
 from .forms import ChalkSlateUserRegistrationForm, ChalkSlateAdminRegistrationForm, StudentRegistrationForm, TutorRegistrationForm, UserAuthenticationForm
 
 
@@ -28,6 +28,11 @@ def home(request):
         elif chalkslate_user.user_type == 4:
             related_to = chalkslate_user.tutor
             context['related_to'] = related_to
+
+    all=ChalkSlateAdmin.objects.all()
+    context={'all':all}
+
+
 
     return render(request,'management/home.html', context)
 
