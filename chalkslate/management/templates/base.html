@@ -23,23 +23,24 @@
         ____________________ChalkSlate.com______________________
 
         <a href="https://www.facebook.com/kowshiqueroy" target="blank"><img style="width: 60px; height: 60px;" alt="fb" src="{% static 'management/images/fb.png' %}"/> </a>
-
+        <center>
         {% if request.user.is_authenticated %}
 
 
 
-            <p>
+
                 {% if chalkslate_user.user_type > 2 %}
                     <img src="{{ related_to.picture.url }}" width="150">
                 {% endif %}
                 Hello, {{ request.user.username }} | <a href="{% url 'logout' %}">Logout</a>
-            </p>
+
 
         {% else %}
 
-            <p> <a href="{% url 'register' %}">Register</a> | <a href="{% url 'login' %}">Login</a> </p>
+             <a href="{% url 'register' %}">Register</a> | <a href="{% url 'login' %}">Login</a>
 
         {% endif %}
+        </center>
 
     </h1>
 

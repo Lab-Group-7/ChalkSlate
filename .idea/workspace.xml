@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16f46a05-0e73-475b-b893-ab7f0f4cf0ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ChalkSlate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ChalkSlate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chalkslate/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chalkslate/management/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chalkslate/management/templates/management/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/templates/management/home.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="68" column="17" lean-forward="true" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
+            <state relative-caret-position="221">
+              <caret line="31" column="41" lean-forward="true" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -119,7 +114,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="75" />
     <option name="y" value="-15" />
     <option name="width" value="1285" />
@@ -365,8 +360,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chalkslate/management/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="68" column="17" lean-forward="true" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
+        <state relative-caret-position="221">
+          <caret line="31" column="41" lean-forward="true" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
         </state>
       </provider>
     </entry>
