@@ -22,24 +22,25 @@
 
         ____________________ChalkSlate.com______________________
 
-        <a href="https://www.facebook.com/kowshiqueroy" target="blank"><img style="width: 60px; height: 60px;" alt="fb" src="{% static 'management/images/fb.png' %}"/> </a>
-
+        <a href="/admin" target="blank"><img style="width: 60px; height: 60px;" alt="fb" src="{% static 'management/images/fb.png' %}"/> </a>
+        <center>
         {% if request.user.is_authenticated %}
 
 
 
-            <p>
+
                 {% if chalkslate_user.user_type > 2 %}
                     <img src="{{ related_to.picture.url }}" width="150">
                 {% endif %}
                 Hello, {{ request.user.username }} | <a href="{% url 'logout' %}">Logout</a>
-            </p>
+
 
         {% else %}
 
-            <p> <a href="{% url 'register' %}">Register</a> | <a href="{% url 'login' %}">Login</a> </p>
+             <a href="{% url 'register' %}">Register</a> | <a href="{% url 'login' %}">Login</a>
 
         {% endif %}
+        </center>
 
     </h1>
 
@@ -48,7 +49,7 @@
 
 
   <section>
-      <div class="btn-group-lg btn-group-vertical text-center p-3 mb-2 bg-dark text-white" role="group" aria-label="Basic example">
+      <nav class="btn-group-lg btn-group-vertical text-center p-3 mb-2 bg-dark text-white" role="group" aria-label="Basic example">
           <a class="btn btn-outline-primary" href="{% url 'home_page' %}" role="button">HOME</a>
           <a class="btn btn-outline-primary" href="{% url 'notice_board' %}" role="button">NOTICE</a>
 <!--          <a class="btn btn-outline-primary" href="{% url 'sign_in' %}" role="button">SIGN IN</a>-->
@@ -57,22 +58,21 @@
           <a class="btn btn-outline-primary" href="{% url 'guide' %}" role="button">GUIDE</a>
           <a class="btn btn-outline-primary" href="{% url 'about_us' %}" role="button">ABOUT US</a>
 
-      </div>
+      </nav>
 
 
-    <div style="float:right">
+    <article >
 
 
-      <h3 class="text-info"> Welcome To ChalkSlate. </h3>
+      <h3 class="text-info"> Welcome To ChalkSlate.com </h3>
       {% block override_0 %}
 
       {% endblock %}
-    </div>
+    </article>
+
   </section>
 
-  <footer>
-    <p>All rights reserved by ChalkSlate.com Team</p>
-  </footer>
+
 
 </body>
 </html>

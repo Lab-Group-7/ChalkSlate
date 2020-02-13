@@ -135,3 +135,12 @@ class InsStudent(models.Model):
 class InsTutor(models.Model):
     institute = models.ForeignKey(ChalkSlateAdmin, on_delete=models.CASCADE)
     tutor = models.OneToOneField(Tutor, on_delete=models.CASCADE)
+
+class notice(models.Model):
+    name=models.CharField(max_length=50,null=False)
+    mail=models.CharField(max_length=50,null=False)
+    date=models.DateTimeField(null=False)
+    content=models.CharField(max_length=200,null=False)
+    per=models.CharField(max_length=50,default='no')
+    def __str__(self):
+        return self.name

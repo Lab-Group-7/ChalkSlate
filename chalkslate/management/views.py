@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import login, authenticate, logout
-from .models import ChalkSlateUser
+from .models import ChalkSlateUser,notice,ChalkSlateAdmin
 from .forms import ChalkSlateUserRegistrationForm, ChalkSlateAdminRegistrationForm, StudentRegistrationForm, TutorRegistrationForm, UserAuthenticationForm
+
+
+from django.http import HttpResponse
 
 # def homepage(request):
 #     return render(request, 'management/homepage.html', {})
@@ -26,6 +29,11 @@ def home(request):
             related_to = chalkslate_user.tutor
             context['related_to'] = related_to
 
+    all=ChalkSlateAdmin.objects.all()
+    context={'all':all}
+
+
+
     return render(request,'management/home.html', context)
 
 def notice_board(request):
@@ -43,7 +51,12 @@ def notice_board(request):
         elif chalkslate_user.user_type == 4:
             related_to = chalkslate_user.tutor
             context['related_to'] = related_to
+    if request.method=='POST':
 
+        notice.objects.create(name=request.POST.get('name'),mail=request.POST.get('mail'),date=request.POST.get('date'),content=request.POST.get('content'))
+
+    all = notice.objects.all()
+    context = {'all': all}
     return render(request,'management/notice-board.html', context)
 
 def guide(request):
