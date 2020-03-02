@@ -18,13 +18,50 @@
 <br><br>
 <h2>our respected users</h2>
     <br>
-    {% for i in all %}
+    {% for i in institute_list %}
       {{i.institute_name}}
     <br>
     <br>
 
     {% endfor %}
     <br><br>
+
+    {% if request.user.is_authenticated %}
+
+        {% if chalkslate_user.user_type == 2 %}
+
+            <a class="btn btn-outline-primary" href="{% url 'manage_institute' %}" role="button"> Manage Institute </a>
+
+        {% elif chalkslate_user.user_type == 3 %}
+
+            {% if not user_has_institute %}
+
+                <a class="btn btn-outline-primary" href="{% url 'student_join_institute' %}" role="button">Join An Institute </a>
+
+            {% else %}
+
+                <a class="btn btn-outline-primary" href="#" role="button">Go to institute </a>
+
+            {% endif %}
+
+
+        {% elif chalkslate_user.user_type == 4 %}
+
+            {% if not user_has_institute %}
+
+                <a class="btn btn-outline-primary" href="{% url 'tutor_join_institute' %}" role="button">Join An Institute </a>
+
+            {% else %}
+
+                <a class="btn btn-outline-primary" href="#" role="button">Go to institute </a>
+
+            {% endif %}
+
+
+        {% endif %}
+
+
+    {% endif %}
 
 
 

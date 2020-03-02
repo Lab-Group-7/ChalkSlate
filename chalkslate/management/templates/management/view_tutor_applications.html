@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block override_0 %}
+
+{% for tutor_application in tutor_application_list %}
+
+<!--    <li> {{ tutor_application.tutor.chalkslate_user.first_name }} {{ tutor_application.tutor.chalkslate_user.last_name }} </li>-->
+
+    <div class="card" style="width: 15rem;">
+      <img src="{{ tutor_application.tutor.picture.url }}" class="card-img-top" >
+      <div class="card-body">
+        <h5 class="card-title">
+            {{ tutor_application.tutor.chalkslate_user.first_name }} {{ tutor_application.tutor.chalkslate_user.last_name }}
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ tutor_application.note }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{ tutor_application.posted }}</h6>
+      </div>
+      <a class="btn btn-outline-success" href="#" role="button"> Accept </a>
+      <a class="btn btn-outline-danger" href="#" role="button"> Reject </a>
+    </div>
+
+{% endfor %}
+
+{% endblock %}

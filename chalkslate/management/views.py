@@ -1,8 +1,18 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import login, authenticate, logout
-from .models import ChalkSlateUser,notice,ChalkSlateAdmin
-from .forms import ChalkSlateUserRegistrationForm, ChalkSlateAdminRegistrationForm, StudentRegistrationForm, TutorRegistrationForm, UserAuthenticationForm
+from .models import ChalkSlateUser,\
+    notice,\
+    ChalkSlateAdmin,\
+    TutorApplication,\
+    StudentApplication
+
+from .forms import ChalkSlateUserRegistrationForm,\
+    ChalkSlateAdminRegistrationForm,\
+    StudentRegistrationForm,\
+    TutorRegistrationForm,\
+    UserAuthenticationForm,\
+    JoinInstituteForm
 
 
 from django.http import HttpResponse
@@ -19,20 +29,35 @@ def home(request):
 
     if request.user.is_authenticated:
         chalkslate_user = ChalkSlateUser.objects.get(username = request.user.username)
+        user_has_institute = chalkslate_user.has_institute
 
         context['chalkslate_user'] = chalkslate_user
+        context['user_has_institute'] = user_has_institute
 
         if chalkslate_user.user_type == 3:
             related_to = chalkslate_user.student
             context['related_to'] = related_to
+
+            # send relationship info if student is associated with an institute
+            if user_has_institute:
+                ins_student = related_to.ins_student
+                institute = related_to.institute
+                context['ins_student'] = ins_student
+                context['institute'] = institute
+
         elif chalkslate_user.user_type == 4:
             related_to = chalkslate_user.tutor
             context['related_to'] = related_to
 
-    all=ChalkSlateAdmin.objects.all()
-    context={'all':all}
+            # send relationship info if tutor is associated with an institute
+            if user_has_institute:
+                ins_tutor = related_to.ins_tutor
+                institute = related_to.institute
+                context['ins_tutor'] = ins_tutor
+                context['institute'] = institute
 
-
+    institute_list = ChalkSlateAdmin.objects.all()
+    context['institute_list'] = institute_list
 
     return render(request,'management/home.html', context)
 
@@ -123,6 +148,7 @@ def reg_admin(request):
         if chalkslate_user_registration_form.is_valid() and chalkslate_admin_registration_form.is_valid():
             chalkslate_user = chalkslate_user_registration_form.save(commit=False)
             chalkslate_user.user_type = 2
+            chalkslate_user.has_institute = True
             chalkslate_user.save()
             email = chalkslate_user_registration_form.cleaned_data.get('email')
             raw_password = chalkslate_user_registration_form.cleaned_data.get('password1')
@@ -315,7 +341,110 @@ def login_view(request):
 
     return render(request, 'management/login_page.html', context)
 
+def join_institute(request):
+
+    context = {}
+
+    join_institute_form = JoinInstituteForm()
+
+    context['join_institute_form'] = join_institute_form
+
+    return render(request, 'management/join_institute.html', context)
+
+def tutor_join_institute(request):
+
+    context = {}
+
+    if request.method == 'POST':
+        join_institute_form = JoinInstituteForm(request.POST)
+
+        if join_institute_form.is_valid():
+            chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
+            tutor = chalkslate_user.tutor
+            institute = join_institute_form.cleaned_data['institute_name']
+            note = join_institute_form.cleaned_data['note']
+            chalkslate_admin = ChalkSlateAdmin.objects.get(institute_name=institute)
+
+            tutor_application = TutorApplication()
+            tutor_application.institute = chalkslate_admin
+            tutor_application.tutor = tutor
+            tutor_application.note = note
+            tutor_application.save()
+
+            return redirect('home_page')
+
+        else:
+            context['join_institute_form'] = join_institute_form
+
+    else:
+        join_institute_form = JoinInstituteForm()
+
+        context['join_institute_form'] = join_institute_form
+
+    return render(request, 'management/join_institute.html', context)
 
 
 
-# Create your views here.
+def student_join_institute(request):
+    context = {}
+
+    if request.method == 'POST':
+        join_institute_form = JoinInstituteForm(request.POST)
+
+        if join_institute_form.is_valid():
+            chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
+            student = chalkslate_user.student
+            institute = join_institute_form.cleaned_data['institute_name']
+            note = join_institute_form.cleaned_data['note']
+            chalkslate_admin = ChalkSlateAdmin.objects.get(institute_name=institute)
+
+            student_application = StudentApplication()
+            student_application.institute = chalkslate_admin
+            student_application.student = student
+            student_application.note = note
+            student_application.save()
+
+            return redirect('home_page')
+
+        else:
+            context['join_institute_form'] = join_institute_form
+
+    else:
+        join_institute_form = JoinInstituteForm()
+
+        context['join_institute_form'] = join_institute_form
+
+    return render(request, 'management/join_institute.html', context)
+
+
+def manage_institute(request):
+    return render(request, 'management/manage_institute.html')
+
+
+def view_tutor_applications(request):
+    context = {}
+
+    chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
+
+    # institute = ChalkSlateAdmin.objects.get(chalkslate_user=chalkslate_user)
+
+    institute = chalkslate_user.chalkslateadmin
+
+    tutor_application_list = TutorApplication.objects.filter(institute=institute)
+
+    context['tutor_application_list'] = tutor_application_list
+
+    return render(request, 'management/view_tutor_applications.html', context)
+
+def view_student_applications(request):
+    context = {}
+
+    chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
+
+    institute = chalkslate_user.chalkslateadmin
+
+    student_application_list = StudentApplication.objects.filter(institute=institute)
+
+    context['student_application_list'] = student_application_list
+
+    return render(request, 'management/view_student_applications.html', context)

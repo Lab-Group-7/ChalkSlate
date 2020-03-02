@@ -1,10 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
-# Create your models here.
-
-#### CANNOT LOG IN
-
 class MyAccountManager(BaseUserManager):
 
     def create_user(self, username, email, password=None):
@@ -55,6 +51,7 @@ class ChalkSlateUser(AbstractBaseUser):
     # new
     first_name = models.CharField(max_length=60, verbose_name='first name')
     last_name = models.CharField(max_length=60, verbose_name='last name')
+    has_institute = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username',]
@@ -144,3 +141,16 @@ class notice(models.Model):
     per=models.CharField(max_length=50,default='no')
     def __str__(self):
         return self.name
+
+
+class TutorApplication(models.Model):
+    institute = models.ForeignKey(ChalkSlateAdmin, on_delete=models.CASCADE)
+    tutor = models.OneToOneField(Tutor, on_delete=models.CASCADE)
+    note = models.TextField(max_length=100)
+    posted = models.DateTimeField(auto_now_add=True)
+
+class StudentApplication(models.Model):
+    institute = models.ForeignKey(ChalkSlateAdmin, on_delete=models.CASCADE)
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+    note = models.CharField(max_length=100)
+    posted = models.DateTimeField(auto_now_add=True)

@@ -40,4 +40,13 @@ urlpatterns = [
     path('home-student-other/', views.home_student_other, name='home_student_other'),
     path('logout/', views.logout_view, name='logout'),
     path('login/', views.login_view, name='login'),
+
+    path('join_institute/', views.join_institute, name='join_institute'),
+    path('tutor_join_institute/', views.tutor_join_institute, name='tutor_join_institute'),
+    path('student_join_institute/', views.student_join_institute, name='student_join_institute'),
+
+    path('manage_institute/', views.manage_institute, name='manage_institute'),
+    path('view_tutor_applications/', views.view_tutor_applications, name='view_tutor_applications'),
+    path('view_student_applications/', views.view_student_applications, name='view_student_applications'),
+
 ]

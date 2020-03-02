@@ -4,6 +4,13 @@ from django.contrib.auth import authenticate
 
 from .models import ChalkSlateUser, ChalkSlateAdmin, Student, Tutor
 
+# This method gets all the institutes for InstituteRegistrationForm
+def get_all_institutes():
+    chalkslate_admin_list = ChalkSlateAdmin.objects.all()
+    return [(chalkslate_admin.institute_name, chalkslate_admin.institute_name) for chalkslate_admin in
+            chalkslate_admin_list]
+
+
 class ChalkSlateUserRegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=60, help_text='Required. Add a valid email address.')
 
@@ -57,21 +64,16 @@ class UserAuthenticationForm(forms.ModelForm):
         if not authenticate(email=email, password=password):
             raise forms.ValidationError('Invalid login.')
 
-# class SigninForm(forms.Form):
-#     username = forms.CharField(label='username', max_length=100, widget=forms.TextInput(attrs={'placeholder' : 'Username'}))
-#     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder' : '******'}))
-#
-# class AdminRegisterForm(forms.Form):
-#     institute_name = forms.CharField(label='Name of institute', max_length=100, widget=forms.TextInput(attrs={'placeholder' : 'Name of institute'}))
-#     email_address = forms.EmailField()
-#     address = forms.CharField(label='Address', max_length=100, widget=forms.TextInput(attrs={'placeholder' : 'Name of institute'}))
-#
-# class TutorRegisterForm(forms.Form):
-#     tutor_name = forms.CharField(label='Name', max_length=100, widget=forms.TextInput(attrs={'placeholder' : 'Name'}))
-#     email_address = forms.EmailField()
-#     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder' : '******'}))
-#
-# class StudentRegisterForm(forms.Form):
-#     student_name = forms.CharField(label='Name', max_length=100, widget=forms.TextInput(attrs={'placeholder' : 'Name'}))
-#     email_address = forms.EmailField()
-#     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder' : '******'}))
+class JoinInstituteForm(forms.Form):
+
+    institute_name = forms.ChoiceField(choices=get_all_institutes())
+    note = forms.CharField(label='Note',
+                           widget=forms.Textarea(attrs={
+                               'placeholder' : 'Write something that will assist your institute admin to recognize you.',
+                           }
+                           ),
+                           max_length=100)
+
+    def __init__(self, *args, **kwargs):
+        super(JoinInstituteForm, self).__init__(*args, **kwargs)
+        self.fields['institute_name'] = forms.ChoiceField(choices=get_all_institutes())

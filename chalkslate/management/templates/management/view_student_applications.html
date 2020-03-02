@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block override_0 %}
+
+{% for student_application in student_application_list %}
+
+    <div class="card" style="width: 15rem;">
+      <img src="{{ student_application.student.picture.url }}" class="card-img-top" >
+      <div class="card-body">
+        <h5 class="card-title">
+            {{ student_application.student.chalkslate_user.first_name }} {{ student_application.student.chalkslate_user.last_name }}
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ student_application.note }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{ student_application.posted }}</h6>
+      </div>
+      <a class="btn btn-outline-success" href="#" role="button"> Accept </a>
+      <a class="btn btn-outline-danger" href="#" role="button"> Reject </a>
+    </div>
+
+{% endfor %}
+
+{% endblock %}
