@@ -1,11 +1,15 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth import login, authenticate, logout
+from django.core.paginator import Paginator
+
 from .models import ChalkSlateUser,\
     notice,\
     ChalkSlateAdmin,\
     TutorApplication,\
-    StudentApplication
+    StudentApplication,\
+    Tutor,\
+    Student
 
 from .forms import ChalkSlateUserRegistrationForm,\
     ChalkSlateAdminRegistrationForm,\
@@ -49,11 +53,17 @@ def home(request):
             related_to = chalkslate_user.tutor
             context['related_to'] = related_to
 
+            # For Debugging. Do not uncomment
+            # chalkslate_user.has_institute = False
+            # related_to.institute = None
+            # chalkslate_user.save()
+            # related_to.save()
+
             # send relationship info if tutor is associated with an institute
             if user_has_institute:
-                ins_tutor = related_to.ins_tutor
+                # ins_tutor = related_to.ins_tutor
                 institute = related_to.institute
-                context['ins_tutor'] = ins_tutor
+                # context['ins_tutor'] = ins_tutor
                 context['institute'] = institute
 
     institute_list = ChalkSlateAdmin.objects.all()
@@ -355,12 +365,19 @@ def tutor_join_institute(request):
 
     context = {}
 
+    chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
+    tutor = chalkslate_user.tutor
+    try:
+        tutor_application = TutorApplication.objects.get(tutor=tutor)
+    except TutorApplication.DoesNotExist:
+        tutor_application = None
+
     if request.method == 'POST':
         join_institute_form = JoinInstituteForm(request.POST)
 
         if join_institute_form.is_valid():
-            chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
-            tutor = chalkslate_user.tutor
+            # chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
+            # tutor = chalkslate_user.tutor
             institute = join_institute_form.cleaned_data['institute_name']
             note = join_institute_form.cleaned_data['note']
             chalkslate_admin = ChalkSlateAdmin.objects.get(institute_name=institute)
@@ -376,10 +393,15 @@ def tutor_join_institute(request):
         else:
             context['join_institute_form'] = join_institute_form
 
-    else:
+    elif tutor_application is None:
         join_institute_form = JoinInstituteForm()
 
         context['join_institute_form'] = join_institute_form
+    else:
+        return HttpResponse(
+            '<h1> :/ </h1>'
+            '<h1> You already applied to an institute. </h1>'
+        )
 
     return render(request, 'management/join_institute.html', context)
 
@@ -388,12 +410,15 @@ def tutor_join_institute(request):
 def student_join_institute(request):
     context = {}
 
+    chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
+    student = chalkslate_user.student
+
     if request.method == 'POST':
         join_institute_form = JoinInstituteForm(request.POST)
 
         if join_institute_form.is_valid():
-            chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
-            student = chalkslate_user.student
+            # chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
+            # student = chalkslate_user.student
             institute = join_institute_form.cleaned_data['institute_name']
             note = join_institute_form.cleaned_data['note']
             chalkslate_admin = ChalkSlateAdmin.objects.get(institute_name=institute)
@@ -409,10 +434,17 @@ def student_join_institute(request):
         else:
             context['join_institute_form'] = join_institute_form
 
-    else:
+
+    elif student.studentapplication is None:
         join_institute_form = JoinInstituteForm()
 
         context['join_institute_form'] = join_institute_form
+    else:
+        return HttpResponse(
+            '<h1> :/ </h1>'
+            '<h1> You already applied to an institute. </h1>'
+        )
+
 
     return render(request, 'management/join_institute.html', context)
 
@@ -424,15 +456,39 @@ def manage_institute(request):
 def view_tutor_applications(request):
     context = {}
 
-    chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
+    chalkslateuser = ChalkSlateUser.objects.get(username=request.user.username)
+    institute = chalkslateuser.chalkslateadmin
+
+    if request.method == 'POST':
+        tutor_id = request.POST.get('accept_button', None)
+
+
+
+        if tutor_id is not None:
+            tutor = Tutor.objects.get(id=tutor_id)
+            tutor.institute = institute
+            associated_user = ChalkSlateUser.objects.get(tutor=tutor)
+            associated_user.has_institute = True
+            associated_user.save()
+            tutor.save()
+        else:
+            tutor_id = request.POST.get('reject_button')
+            tutor = Tutor.objects.get(id=tutor_id)
+
+        tutorapplication = tutor.tutorapplication
+        tutorapplication.delete()
 
     # institute = ChalkSlateAdmin.objects.get(chalkslate_user=chalkslate_user)
 
-    institute = chalkslate_user.chalkslateadmin
+    # institute = chalkslateuser.chalkslateadmin
 
-    tutor_application_list = TutorApplication.objects.filter(institute=institute)
+    tutor_application_list = TutorApplication.objects.filter(institute=institute).order_by('-posted')
 
-    context['tutor_application_list'] = tutor_application_list
+    paginated_tutor_application_list = Paginator(tutor_application_list, 4)
+    page_number = request.GET.get('page')
+    tutor_page_obj = paginated_tutor_application_list.get_page(page_number)
+
+    context['tutor_page_obj'] = tutor_page_obj
 
     return render(request, 'management/view_tutor_applications.html', context)
 

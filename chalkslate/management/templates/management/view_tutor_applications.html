@@ -2,23 +2,67 @@
 
 {% block override_0 %}
 
-{% for tutor_application in tutor_application_list %}
+{% for tutor_application in tutor_page_obj %}
 
 <!--    <li> {{ tutor_application.tutor.chalkslate_user.first_name }} {{ tutor_application.tutor.chalkslate_user.last_name }} </li>-->
 
-    <div class="card" style="width: 15rem;">
-      <img src="{{ tutor_application.tutor.picture.url }}" class="card-img-top" >
-      <div class="card-body">
-        <h5 class="card-title">
-            {{ tutor_application.tutor.chalkslate_user.first_name }} {{ tutor_application.tutor.chalkslate_user.last_name }}
-        </h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{ tutor_application.note }}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">{{ tutor_application.posted }}</h6>
-      </div>
-      <a class="btn btn-outline-success" href="#" role="button"> Accept </a>
-      <a class="btn btn-outline-danger" href="#" role="button"> Reject </a>
-    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card" style="width: 15rem;">
+          <img src="{{ tutor_application.tutor.picture.url }}" class="card-img-top" >
+          <div class="card-body">
+            <h5 class="card-title">
+                {{ tutor_application.tutor.chalkslate_user.first_name }} {{ tutor_application.tutor.chalkslate_user.last_name }}
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ tutor_application.note }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ tutor_application.posted }}</h6>
+          </div>
+          <button class="btn btn-outline-success" type="submit" role="button" name="accept_button" value="{{tutor_application.tutor.id}}"> Accept </button>
+          <button class="btn btn-outline-danger" type="submit" role="button" name="reject_button" value="{{tutor_application.tutor.id}}"> Reject </button>
+        </div>
+    </form>
 
 {% endfor %}
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if tutor_page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ tutor_page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ tutor_page_obj.number }} of {{ tutor_page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if tutor_page_obj.has_next %}
+            <a href="?page={{ tutor_page_obj.next_page_number }}">next</a>
+            <a href="?page={{ tutor_page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<!--{% for tutor_application in tutor_application_list %}-->
+
+<!--&lt;!&ndash;    <li> {{ tutor_application.tutor.chalkslate_user.first_name }} {{ tutor_application.tutor.chalkslate_user.last_name }} </li>&ndash;&gt;-->
+
+<!--    <form action="" method="post" enctype="multipart/form-data">-->
+<!--        {% csrf_token %}-->
+<!--        <div class="card" style="width: 15rem;">-->
+<!--          <img src="{{ tutor_application.tutor.picture.url }}" class="card-img-top" >-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">-->
+<!--                {{ tutor_application.tutor.chalkslate_user.first_name }} {{ tutor_application.tutor.chalkslate_user.last_name }}-->
+<!--            </h5>-->
+<!--            <h6 class="card-subtitle mb-2 text-muted">{{ tutor_application.note }}</h6>-->
+<!--            <h6 class="card-subtitle mb-2 text-muted">{{ tutor_application.posted }}</h6>-->
+<!--          </div>-->
+<!--          <button class="btn btn-outline-success" type="submit" role="button" name="accept_button" value="{{tutor_application.tutor.id}}"> Accept </button>-->
+<!--          <button class="btn btn-outline-danger" type="submit" role="button" name="reject_button" value="{{tutor_application.tutor.id}}"> Reject </button>-->
+<!--        </div>-->
+<!--    </form>-->
+
+<!--{% endfor %}-->
 
 {% endblock %}
