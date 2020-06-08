@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth import login, authenticate, logout
 from django.core.paginator import Paginator
+from django.contrib.auth.models import Group
+from django.core.exceptions import FieldError, ObjectDoesNotExist
 
 from .models import ChalkSlateUser,\
     notice,\
@@ -43,11 +45,18 @@ def home(request):
             context['related_to'] = related_to
 
             # send relationship info if student is associated with an institute
-            if user_has_institute:
-                ins_student = related_to.ins_student
-                institute = related_to.institute
-                context['ins_student'] = ins_student
-                context['institute'] = institute
+            # uncomment below code after InsStudent functionalities
+            # have been added
+            # if user_has_institute:
+            #     ins_student = related_to.ins_student
+            #     institute = related_to.institute
+            #     context['ins_student'] = ins_student
+            #     context['institute'] = institute
+
+            # comment below two lines afterwards
+            # after adding InsStudent functionality
+            institute = related_to.institute
+            context['institute'] = institute
 
         elif chalkslate_user.user_type == 4:
             related_to = chalkslate_user.tutor
@@ -490,17 +499,117 @@ def view_tutor_applications(request):
 
     context['tutor_page_obj'] = tutor_page_obj
 
-    return render(request, 'management/view_tutor_applications.html', context)
+    return render(request, 'management/view_tutor_applications.html', context=context)
 
 def view_student_applications(request):
     context = {}
 
-    chalkslate_user = ChalkSlateUser.objects.get(username=request.user.username)
+    chalkslateuser = ChalkSlateUser.objects.get(username=request.user.username)
+    institute = chalkslateuser.chalkslateadmin
 
-    institute = chalkslate_user.chalkslateadmin
+    if request.method == 'POST':
+        student_id = request.POST.get('accept_button', None)
 
-    student_application_list = StudentApplication.objects.filter(institute=institute)
 
-    context['student_application_list'] = student_application_list
 
-    return render(request, 'management/view_student_applications.html', context)
+        if student_id is not None:
+            student = Student.objects.get(id=student_id)
+            student.institute = institute
+            associated_user = ChalkSlateUser.objects.get(student=student)
+            associated_user.has_institute = True
+            associated_user.save()
+            student.save()
+        else:
+            student_id = request.POST.get('reject_button')
+            student = Student.objects.get(id=student_id)
+
+        studentapplication = student.studentapplication
+        studentapplication.delete()
+
+    # institute = ChalkSlateAdmin.objects.get(chalkslate_user=chalkslate_user)
+
+    # institute = chalkslateuser.chalkslateadmin
+
+    student_application_list = StudentApplication.objects.filter(institute=institute).order_by('-posted')
+
+    paginated_student_application_list = Paginator(student_application_list, 4)
+    page_number = request.GET.get('page')
+    student_page_obj = paginated_student_application_list.get_page(page_number)
+
+    context['student_page_obj'] = student_page_obj
+
+    return render(request, 'management/view_student_applications.html', context=context)
+
+def tutor_institute_page(request):
+    context = {}
+
+    current_user = request.user
+    if not current_user.is_authenticated:
+        return redirect('home_page')
+
+    # need to switch from
+    # searching by username
+    # to searching by id
+    chalkslateuser = ChalkSlateUser.objects.get(username=request.user.username)
+    try:
+        # FieldError if chalkslateuser
+        # does not have field tutor
+        tutor = chalkslateuser.tutor
+
+        # FieldError if tutor
+        # does not have field institute
+        # or None if it previously had institute
+        # which was later set to None
+        institute = tutor.institute
+    except (Tutor.DoesNotExist, ChalkSlateAdmin.DoesNotExist):
+        # set tutor and institute to None
+        # so that the request gets redirected
+        # to home_page afterwards
+        tutor = None
+        institute = None
+
+    if institute is None:
+        return redirect('home_page')
+
+    context['chalkslate_user'] = chalkslateuser
+    context['tutor'] = tutor
+    context['institute'] = institute
+
+    return render(request, 'management/tutor_institute_page.html', context=context)
+
+def student_institute_page(request):
+    context = {}
+
+    current_user = request.user
+    if not current_user.is_authenticated:
+        return redirect('home_page')
+
+    # need to switch from
+    # searching by username
+    # to searching by id
+    chalkslateuser = ChalkSlateUser.objects.get(username=request.user.username)
+    try:
+        # FieldError if chalkslateuser
+        # does not have field student
+        student = chalkslateuser.student
+
+        # FieldError if student
+        # does not have field institute
+        # or None if it previously had institute
+        # which was later set to None
+        institute = student.institute
+    except (Student.DoesNotExist, ChalkSlateAdmin.DoesNotExist):
+        # set tutor and institute to None
+        # so that the request gets redirected
+        # to home_page afterwards
+        student = None
+        institute = None
+
+    if institute is None:
+        return redirect('home_page')
+
+    context['chalkslate_user'] = chalkslateuser
+    context['student'] = student
+    context['institute'] = institute
+
+    return render(request, 'management/tutor_institute_page.html', context=context)

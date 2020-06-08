@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16f46a05-0e73-475b-b893-ab7f0f4cf0ed" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/management/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chalkslate/management/templates/management/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/templates/management/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/management/templates/management/view_student_applications.html" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/templates/management/view_student_applications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chalkslate/management/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chalkslate/management/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chalkslate/management/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,7 +34,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../classwork" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">

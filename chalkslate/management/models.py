@@ -103,6 +103,7 @@ class Student(models.Model):
     # name = models.CharField(max_length=100)
     student_details = models.CharField(verbose_name='student details', max_length=100)
     picture = models.ImageField(verbose_name='picture', upload_to='student_pictures')
+    institute = models.ForeignKey(ChalkSlateAdmin, on_delete=models.SET_NULL, null=True, default=None)
 
     def __str__(self):
         return self.chalkslate_user.email

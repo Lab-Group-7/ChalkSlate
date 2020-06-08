@@ -48,5 +48,7 @@ urlpatterns = [
     path('manage_institute/', views.manage_institute, name='manage_institute'),
     path('view_tutor_applications/', views.view_tutor_applications, name='view_tutor_applications'),
     path('view_student_applications/', views.view_student_applications, name='view_student_applications'),
+    path('tutor_institute_page/', views.tutor_institute_page, name='tutor_institute_page'),
+    path('student_institute_page/', views.student_institute_page, name='student_institute_page'),
 
 ]
